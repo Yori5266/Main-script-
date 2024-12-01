@@ -1,36 +1,53 @@
 local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
 
--- กำหนดลิสต์ของเกมและ URL
+-- Game list and script URL (ลิสต์เกมและ URL ของสคริปต์ที่รองรับ)
 _G.GameList = {
     [537413528] = "https://raw.githubusercontent.com/Yori5266/BUILD-A-BOAT-/refs/heads/main/Protected_2581229432441995.txt",  -- Sofara Hub (Build A Boat)
 }
 
--- ตรวจสอบว่าเกมปัจจุบันอยู่ในลิสต์หรือไม่
+-- Get the current game ID (ดึง ID ของเกมปัจจุบัน)
 local gameId = game.PlaceId
 
--- พิมพ์ ID ของเกมที่กำลังเล่น
-print("Current Game ID: " .. gameId)
+-- Print the current game ID (แสดง ID ของเกมในคอนโซล)
+print("Current Game ID (ID ของเกมปัจจุบัน): " .. gameId)
 
--- เช็คว่า gameId ตรงกับที่กำหนดใน _G.GameList หรือไม่
+-- Check if the current game is in the list (ตรวจสอบว่าเกมอยู่ในลิสต์หรือไม่)
 if _G.GameList[gameId] then
     local scriptUrl = _G.GameList[gameId]
-    print("Loading script from URL: " .. scriptUrl)
+    print("Loading script from URL (กำลังโหลดสคริปต์จาก URL): " .. scriptUrl)
 
-    -- โหลดสคริปต์จาก URL และรัน
+    -- Attempt to load and execute the script (พยายามโหลดและรันสคริปต์)
     local success, result = pcall(function()
         return loadstring(game:HttpGet(scriptUrl))()
     end)
 
-    -- ตรวจสอบสถานะการโหลด
+    -- Check if the script loaded successfully (ตรวจสอบว่าสคริปต์โหลดสำเร็จหรือไม่)
     if success then
-        print("Script loaded successfully!")
+        print("Script loaded successfully! (โหลดสคริปต์สำเร็จ!)")
+        
+        -- Show success notification (แสดงข้อความแจ้งเตือนสำเร็จ)
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Script Loaded",
+            Text = "โหลดสคริปต์สำเร็จ! พร้อมเริ่มเล่นได้เลย (Script loaded successfully! Ready to play.)",
+            Duration = 5
+        })
     else
-        warn("Failed to load script: " .. tostring(result))
+        warn("Failed to load script (โหลดสคริปต์ล้มเหลว): " .. tostring(result))
     end
 else
-    -- หากไม่พบเกมในลิสต์
-    print("No script found for this game.")
+    -- If the game is not supported (ถ้าเกมไม่รองรับ)
+    print("No script found for this game (ไม่พบสคริปต์สำหรับเกมนี้). Rejoining the current server in 5 seconds... (กำลังกลับไปที่เซิร์ฟเวอร์เดิมใน 5 วินาที)")
 
-    -- เตะผู้เล่นออกจากเกมพร้อมแสดงข้อความ
-    game.Players.LocalPlayer:Kick("สคริปต์ยังไม่ซัพพอร์ต (Script not supported)")
+    -- Show a notification to the player (แสดงข้อความแจ้งเตือนผู้เล่น)
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Script Error",
+        Text = "No script found for this game (ไม่พบสคริปต์สำหรับเกมนี้)",
+        Duration = 5
+    })
+
+    -- Wait for 5 seconds before rejoining (รอ 5 วินาทีก่อนกลับเซิร์ฟเดิม)
+    wait(5)
+    TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
 end
