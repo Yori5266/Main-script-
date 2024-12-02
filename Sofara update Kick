@@ -5,7 +5,7 @@ local Players = game:GetService("Players")
 -- Game list and script URL (ลิสต์เกมและ URL ของสคริปต์ที่รองรับ)
 _G.GameList = {
     [537413528] = "https://raw.githubusercontent.com/Yori5266/BUILD-A-BOAT-/refs/heads/main/Protected_2581229432441995.txt",  -- Sofara Hub (Build A Boat)
-    [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt"
+    [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt" -- sofara hub (legend of speed)
 }
 
 -- Get the current game ID (ดึง ID ของเกมปัจจุบัน)
