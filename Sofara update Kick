@@ -8,7 +8,7 @@ _G.GameList = {
     [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt" -- sofara hub (legend of speed)
 }
 
--- Get the current game ID (ดึง ID ของเกมปัจจุบัน)
+-- Get the current game ID (ดึง ID ของเกมปัจจุบัน real)
 local gameId = game.PlaceId
 
 -- Print the current game ID (แสดง ID ของเกมในคอนโซล)
