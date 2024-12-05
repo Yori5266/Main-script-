@@ -44,7 +44,7 @@ else
     -- Show a notification to the player (แสดงข้อความแจ้งเตือนผู้เล่น)
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Script Error",
-        Text = "No script found for this game (ไม่พบสคริปต์สำหรับเกมนี้)",
+        Text = "No script found for this game (ไม่พบสคริปต์สำหรับเกมนี้). You will be teleported back to the correct server shortly. (คุณจะถูกย้ายกลับไปยังเซิร์ฟเวอร์ที่ถูกต้อง)",
         Duration = 5
     })
 
