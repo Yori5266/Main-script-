@@ -4,12 +4,12 @@ local Players = game:GetService("Players")
 
 -- Game list and script URL (ลิสต์เกมและ URL ของสคริปต์ที่รองรับ)
 _G.GameList = {
-    [537413528] = "https://raw.githubusercontent.com/Yori5266/BUILD-A-BOAT-/refs/heads/main/Protected_2581229432441995.txt",  -- Sofara Hub (Build A Boat)
-    [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt" -- sofara hub (legend of speed)
-    [16732694052] = "https://raw.githubusercontent.com/Yori5266/Sofara-on-top-don-copy-and-paste-lol-losee/refs/heads/main/Protected_4332947390160127.txt" -- sofara Hub (fish)
+    [537413528] = "https://raw.githubusercontent.com/Yori5266/BUILD-A-BOAT-/refs/heads/main/Protected_2581229432441995.txt", -- Sofara Hub (Build A Boat)
+    [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt", -- Sofara Hub (Legend of Speed)
+    [16732694052] = "https://raw.githubusercontent.com/Yori5266/Sofara-on-top-don-copy-and-paste-lol-losee/refs/heads/main/Protected_4332947390160127.txt" -- Sofara Hub (Fish)
 }
 
--- Get the current game ID (ดึง ID ของเกมปัจจุบัน real)
+-- Get the current game ID (ดึง ID ของเกมปัจจุบัน)
 local gameId = game.PlaceId
 
 -- Print the current game ID (แสดง ID ของเกมในคอนโซล)
@@ -22,7 +22,12 @@ if _G.GameList[gameId] then
 
     -- Attempt to load and execute the script (พยายามโหลดและรันสคริปต์)
     local success, result = pcall(function()
-        return loadstring(game:HttpGet(scriptUrl))()
+        local response = game:HttpGet(scriptUrl)
+        if response and response ~= "" then
+            return loadstring(response)()
+        else
+            error("Script is empty or invalid!")
+        end
     end)
 
     -- Check if the script loaded successfully (ตรวจสอบว่าสคริปต์โหลดสำเร็จหรือไม่)
@@ -37,6 +42,11 @@ if _G.GameList[gameId] then
         })
     else
         warn("Failed to load script (โหลดสคริปต์ล้มเหลว): " .. tostring(result))
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Script Load Failed",
+            Text = "ไม่สามารถโหลดสคริปต์ได้ (Failed to load script): " .. tostring(result),
+            Duration = 5
+        })
     end
 else
     -- If the game is not supported (ถ้าเกมไม่รองรับ)
@@ -50,6 +60,6 @@ else
     })
 
     -- Wait for 5 seconds before rejoining (รอ 5 วินาทีก่อนกลับเซิร์ฟเดิม)
-    wait(5)
+    task.wait(5)
     TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, Players.LocalPlayer)
 end
