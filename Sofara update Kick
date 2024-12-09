@@ -9,7 +9,7 @@ _G.GameList = {
     [16732694052] = "https://raw.githubusercontent.com/Yori5266/Sofara-on-top-don-copy-and-paste-lol-losee/refs/heads/main/Protected_4332947390160127.txt" -- Sofara Hub (Fish)
 }
 
--- Get the current game ID (ดึง ID ของเกมปัจจุบัน)
+-- Get the current game ID (ดึง ID ของเกมปัจจุบันย้ำ)
 local gameId = game.PlaceId
 
 -- Print the current game ID (แสดง ID ของเกมในคอนโซล)
