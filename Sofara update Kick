@@ -6,7 +6,7 @@ local Players = game:GetService("Players")
 _G.GameList = {
     [537413528] = "https://raw.githubusercontent.com/Yori5266/BUILD-A-BOAT-/refs/heads/main/Protected_2581229432441995.txt",  -- Sofara Hub (Build A Boat)
     [3101667897] = "https://raw.githubusercontent.com/Yori5266/Legend-of-speed-obf-/refs/heads/main/Protected_6193910322912063.txt" -- sofara hub (legend of speed)
-    [16732694052] = "https://raw.githubusercontent.com/Yori5266/No-copy-my-flow/refs/heads/main/obf_pB1TCivhYcGzEK2K0UPSMU16B27ZXH29Xnj3S8k0q39h39o520z5c89gcGOHh2zM.lua.txt" -- sofara Hub (fish)
+    [16732694052] = "https://raw.githubusercontent.com/Yori5266/Sofara-on-top-don-copy-and-paste-lol-losee/refs/heads/main/Protected_4332947390160127.txt" -- sofara Hub (fish)
 }
 
 -- Get the current game ID (ดึง ID ของเกมปัจจุบัน real)
